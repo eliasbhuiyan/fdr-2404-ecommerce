@@ -4,6 +4,7 @@ import BestSell from "./components/Home/BestSell";
 import Category from "./components/Home/Category";
 import PopularProducts from "./components/Home/PopularProducts";
 import ProductBanner from "./components/Home/ProductBanner";
+import TrendyProducts from "./components/Home/TrendyProducts";
 
 export default async function Home() {
    
@@ -15,6 +16,7 @@ export default async function Home() {
    <PopularProducts/>
    <BestSell/>
    <DealOfDay/>
+   <TrendyProducts/>
    </>
   );
 }
