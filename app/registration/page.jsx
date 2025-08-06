@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const Registration = () => {
   const [userData, setUserData] = useState({
@@ -10,19 +11,23 @@ const Registration = () => {
   });
   const handelSubmit = async (e) => {
     e.preventDefault();
-
+    
     try {
       const response = await fetch(
         "https://api.freeapi.app/api/v1/users/register",
         {
           method: "POST",
-          body: userData
+          headers: {accept: 'application/json', 'content-type': 'application/json'},
+          body: JSON.stringify(userData)
         }
       );
       const data = await response.json();
-      console.log(data);
+      if(data.message === "Received data is not valid"){
+       return toast.error(data.message)
+      }
+      toast.success(data.message)
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
 
@@ -37,7 +42,7 @@ const Registration = () => {
               </p>
               <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900">
-                  Your full name
+                  Username
                 </label>
                 <input
                   onChange={(e) =>

@@ -1,7 +1,9 @@
+import { ToastContainer } from "react-toastify";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import "./globals.css";
-
+import { Provider } from "react-redux";
+import store from "./store";
 
 export const metadata = {
   title: "Create Next App",
@@ -12,9 +14,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Navbar/>
-        {children}
-        <Footer/>
+        <Provider store={store}>
+          <Navbar />
+          {children}
+          <Footer />
+          <ToastContainer position="top-right" />
+        </Provider>
       </body>
     </html>
   );
