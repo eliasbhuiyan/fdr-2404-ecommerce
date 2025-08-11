@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { CiLocationOn } from "react-icons/ci";
@@ -10,7 +11,7 @@ const Footer = () => {
       <div className="container">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-20">
           <div>
-            <img src="/logo.png" alt="logo" />
+            <Image width={500} height={400} layout="responsive" src="/logo.png" alt="logo" />
             <p className="font-normal text-lg text-primary pt-4 pb-8">
               Awesome grocery store website template
             </p>
@@ -153,16 +154,16 @@ const Footer = () => {
             </p>
             <div className="flex gap-3">
               <Link href="/">
-                <img src="/app-store.png" alt="app-store" />
+                {/* <img src="/app-store.png" alt="app-store" /> */}
               </Link>
               <Link href="/">
-                <img src="/app-store.png" alt="app-store" />
+                {/* <img src="/app-store.png" alt="app-store" /> */}
               </Link>
             </div>
             <p className="font-normal text-base text-primary my-5">
               Secured Payment Gateways
             </p>
-            <img src="/payment-method.png" alt="payment-method" />
+            {/* <img src="/payment-method.png" alt="payment-method" /> */}
           </div>
         </div>
         <div className="flex flex-col md:flex-row gap-10 justify-between items-center py-9 border-t border-brand mt-11">

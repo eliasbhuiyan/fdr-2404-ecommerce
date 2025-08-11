@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { useRouter } from 'next/navigation';
 import { useState } from "react";
 import { toast } from "react-toastify";
 // tugoceqaf
@@ -8,7 +9,7 @@ const Login = () => {
     username: "",
     password: "",
   });
-
+   const router = useRouter();
   const handelLogin = async (e) => {
     e.preventDefault()
     try {
@@ -27,7 +28,8 @@ const Login = () => {
       if(data.message === "User does not exist") return toast.error(data.message);
 
       toast.success(data.message);
-      console.log(data.data);
+      document.cookie = `accessToken=${data.data.accessToken}`
+      router.push("/")
     } catch (error) {
       console.log(error);
     }

@@ -1,5 +1,5 @@
-"use client"
-import React, { useState } from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import { FaBox, FaSearch, FaShoppingCart } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa";
 import { IoCall, IoCloseCircleSharp } from "react-icons/io5";
@@ -7,11 +7,10 @@ import { FaBarsStaggered } from "react-icons/fa6";
 import Link from "next/link";
 import Image from "next/image";
 
-const Navbar = () => {
+const Navbar = ({userData = null}) => {
   const [show, setShow] = useState(false);
   const [sidebar, setSidebar] = useState(false);
-  const userData = false
-  const cartData = false
+  const cartData = false;
 
   return (
     <header className="relative shadow-sm">
@@ -25,7 +24,13 @@ const Navbar = () => {
             <FaBarsStaggered />
           </button>
           <Link href="/" className="w-32 inline-block lg:w-auto">
-            <Image src="/logo.png" width={128} height={50} alt="logo" className="w-32" />
+            <Image
+              src="/logo.png"
+              width={128}
+              height={50}
+              alt="logo"
+              className="w-32"
+            />
           </Link>
           <div className="border-2 border-brand p-2 lg:p-5 rounded w-full max-w-64  lg:max-w-[700px] hidden md:flex items-center">
             <select
@@ -52,28 +57,25 @@ const Navbar = () => {
                   className="flex gap-2 items-end relative text-secondary"
                 >
                   <span className="w-4 h-4 lg:w-6 lg:h-6 rounded-full bg-brand text-white text-xs md:text-sm flex items-center justify-center absolute -top-3 md:-top-2 -right-2 md:right-5">
-                   {cartData.length}
+                    {cartData.length}
                   </span>
                   <FaShoppingCart className="text-2xl lg:text-3xl text-primary" />{" "}
                   <span className="hidden md:block">Cart</span>
                 </Link>
               </li>
               <li>
-                {
-                  userData
-                  ?
+                {userData ? (
                   <>
-                   <div className="userImage overflow-hidden w-[30px] h-[30px]  rounded-full bg-gray-200">
-                     <Image width={24} height={50} src={userData?.avatar?.url} alt="user profile" />
+                    <div className="userImage overflow-hidden m-auto w-10 h-10 flex justify-center items-center  rounded-full bg-green-600">
+                      <p className="text-white text-2xl">{userData.firstName[0]}</p>
                     </div>
-                    <h2 className="text-[16px] font-medium text-black">{userData?.username}</h2>
+                    <h2 className="text-[16px] font-medium text-black">
+                      {userData?.firstName} {userData.lastName}
+                    </h2>
                   </>
-
-                  :
-                 <Link href="/login">
-                   login
-                 </Link>
-                }
+                ) : (
+                  <Link href="/login">login</Link>
+                )}
               </li>
             </ul>
           </div>
@@ -173,37 +175,73 @@ const Navbar = () => {
             {show && (
               <div className="bg-white w-md rounded-lg absolute top-10 xl:top-20 left-0 p-7 border-2 border-brand grid grid-cols-2 gap-6 z-50">
                 <div className="flex items-center gap-2 cursor-pointer shadow py-2 px-3">
-                  <Image width={24} height={50} src="/category-1.svg" alt="category1" className="w-6" />
+                  <Image
+                    width={24}
+                    height={50}
+                    src="/category-1.svg"
+                    alt="category1"
+                    className="w-6"
+                  />
                   <p className="font-bold text-sm text-primary">
                     Milks and Dairies
                   </p>
                 </div>
                 <div className="flex items-center gap-2 cursor-pointer shadow py-2 px-3">
-                  <Image width={24} height={50} src="/category-1.svg" alt="category1" className="w-6" />
+                  <Image
+                    width={24}
+                    height={50}
+                    src="/category-1.svg"
+                    alt="category1"
+                    className="w-6"
+                  />
                   <p className="font-bold text-sm text-primary">
                     Milks and Dairies
                   </p>
                 </div>
                 <div className="flex items-center gap-2 cursor-pointer shadow py-2 px-3">
-                  <Image width={24} height={50} src="/category-1.svg" alt="category1" className="w-6" />
+                  <Image
+                    width={24}
+                    height={50}
+                    src="/category-1.svg"
+                    alt="category1"
+                    className="w-6"
+                  />
                   <p className="font-bold text-sm text-primary">
                     Milks and Dairies
                   </p>
                 </div>
                 <div className="flex items-center gap-2 cursor-pointer shadow py-2 px-3">
-                  <Image width={24} height={50} src="/category-1.svg" alt="category1" className="w-6" />
+                  <Image
+                    width={24}
+                    height={50}
+                    src="/category-1.svg"
+                    alt="category1"
+                    className="w-6"
+                  />
                   <p className="font-bold text-sm text-primary">
                     Milks and Dairies
                   </p>
                 </div>
                 <div className="flex items-center gap-2 cursor-pointer shadow py-2 px-3">
-                  <Image width={24} height={50} src="/category-1.svg" alt="category1" className="w-6" />
+                  <Image
+                    width={24}
+                    height={50}
+                    src="/category-1.svg"
+                    alt="category1"
+                    className="w-6"
+                  />
                   <p className="font-bold text-sm text-primary">
                     Milks and Dairies
                   </p>
                 </div>
                 <div className="flex items-center gap-2 cursor-pointer shadow py-2 px-3">
-                  <Image width={24} height={50} src="/category-1.svg" alt="category1" className="w-6" />
+                  <Image
+                    width={24}
+                    height={50}
+                    src="/category-1.svg"
+                    alt="category1"
+                    className="w-6"
+                  />
                   <p className="font-bold text-sm text-primary">
                     Milks and Dairies
                   </p>

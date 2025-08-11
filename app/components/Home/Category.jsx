@@ -1,10 +1,8 @@
-"use client"
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
 import Link from "next/link";
 import CategoryItems from "./CategoryItems";
 import { NextArrow, PrevArrow } from "../utils/SliderArrows";
-const Category = () => {
+import ProductSlider from "../utils/ProductSlider";
+const Category = async () => {
   const settings = {
     dots: false,
     infinite: true,
@@ -47,6 +45,13 @@ const Category = () => {
       },
     ],
   };
+
+  const res = await fetch("https://api.escuelajs.co/api/v1/categories",{
+    method: "GET"
+  })
+  const data = await res.json()
+  console.log(data);
+ 
   return (
     <section className="pt-14 pb-11">
       <div className="container">
@@ -77,19 +82,13 @@ const Category = () => {
           </ul>
         </div>
         <div className="pt-11">
-          <Slider {...settings}>
-                <CategoryItems/>
-                <CategoryItems/>
-                <CategoryItems/>
-                <CategoryItems/>
-                <CategoryItems/>
-                <CategoryItems/>
-                <CategoryItems/>
-                <CategoryItems/>
-                <CategoryItems/>
-                <CategoryItems/>
-                <CategoryItems/>
-          </Slider>
+          <ProductSlider slideSetting={settings}>
+            {
+              data.map((item)=>(
+                <CategoryItems key={item.id} category={item}/>
+              ))
+            }
+          </ProductSlider>
         </div>
       </div>
     </section>
